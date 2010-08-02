@@ -1,10 +1,10 @@
 = averager
 
-* http://github.com/#{github_username}/#{project_name}
+* http://github.com/tobstarr/averager
 
 == DESCRIPTION:
 
-FIX (describe your package)
+RubyGem to track long running processes.
 
 == FEATURES/PROBLEMS:
 
@@ -20,7 +20,7 @@ FIX (describe your package)
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install averager
 
 == LICENSE:
 
