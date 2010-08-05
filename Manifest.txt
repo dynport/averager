@@ -10,4 +10,5 @@ script/generate
 spec/averager_spec.rb
 spec/spec.opts
 spec/spec_helper.rb
+spec/time_travel.rb
 tasks/rspec.rake
