@@ -2,15 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{averager}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobias Schwab"]
-  s.date = %q{2010-08-02}
+  s.date = %q{2010-08-06}
   s.description = %q{RubyGem to track long running processes.}
   s.email = ["tobias.schwab@dynport.de"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt"]
-  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "lib/averager.rb", "script/console", "script/destroy", "script/generate", "spec/averager_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/rspec.rake"]
+  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "lib/averager.rb", "script/console", "script/destroy", "script/generate", "spec/averager_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "spec/time_travel.rb", "tasks/rspec.rake"]
   s.homepage = %q{http://github.com/tobstarr/averager}
   s.post_install_message = %q{PostInstall.txt}
   s.rdoc_options = ["--main", "README.rdoc"]
