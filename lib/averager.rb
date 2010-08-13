@@ -90,6 +90,6 @@ class Averager
     end
     @stream.puts "\n" if @progress_bar
     @stream.puts "finished in #{Time.now - @started}"
-    @stream.close
+    @stream.close if ![$stdout, $stderr].include?(@stream)
   end
 end
