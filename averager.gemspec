@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{averager}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobias Schwab"]
-  s.date = %q{2010-08-06}
+  s.date = %q{2010-08-13}
   s.description = %q{RubyGem to track long running processes.}
   s.email = ["tobias.schwab@dynport.de"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt"]

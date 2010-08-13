@@ -2,7 +2,7 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 class Averager
-  VERSION = '0.0.3'
+  VERSION = '0.0.4'
   
   def initialize(options = {})
     @started = Time.now
