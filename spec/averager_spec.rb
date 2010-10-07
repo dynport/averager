@@ -9,29 +9,28 @@ describe "Place your specs here" do
     TimeTravel.freeze_to Time.local(2009, 9, 9, 11, 20, 0)
   end
   
-  it "should log to a specific logfile" do
-    avg = Averager.new(:log_path => @log_path, :every => 1, :digits => 3)
+  it "should print the first every time" do
+    avg = Averager.new(:log_path => @log_path, :every => 10, :digits => 3)
     TimeTravel.jump(1)
     avg.avg(100, "test")
-    TimeTravel.jump(1)
-    avg.avg(300, "test")
-    File.read(@log_path).should == %(100 (100.0): test\n300 (150.0): test\n)
+    File.read(@log_path).should == %(100 (100.0): test\n)
   end
   
-  it "should only log every x time" do
-    avg = Averager.new(:log_path => @log_path, :every => 600)
+  it "should only print every x seconds" do
+    avg = Averager.new(:log_path => @log_path, :every => 10, :digits => 3)
     TimeTravel.jump(1)
-    avg.avg(100, "100")
+    avg.avg(100, "test")
+    File.read(@log_path).should == %(100 (100.0): test\n)
     TimeTravel.jump(1)
-    avg.avg(300, "300")
-    TimeTravel.jump(1)
-    avg.avg(600, "600")
-    avg.avg(601, "601")
-    File.read(@log_path).should == %(    600 (200.0): 600\n)
+    avg.avg(200, "test")
+    File.read(@log_path).should == %(100 (100.0): test\n)
+    TimeTravel.jump(9)
+    avg.avg(1100, "test")
+    File.read(@log_path).should == %(100 (100.0): test\n1100 (100.0): test\n)
   end
   
   it "should include a percentage and estimated end time" do
-    avg = Averager.new(:log_path => @log_path, :expected => 1000, :every => 250)
+    avg = Averager.new(:log_path => @log_path, :expected => 1000, :every => 1.0)
     TimeTravel.jump(1)
     avg.avg(500, "500")
     TimeTravel.jump(1)
@@ -40,7 +39,7 @@ describe "Place your specs here" do
   end
   
   it "should print a progress when asked for" do
-    avg = Averager.new(:log_path => @log_path, :expected => 1000, :every => 250, :progress_bar => true)
+    avg = Averager.new(:log_path => @log_path, :expected => 1000, :every => 1.0, :progress_bar => true)
     TimeTravel.jump(1)
     avg.avg(500, "500")
     File.read(@log_path).should == %( 500/1000 50.0% (500.0): 500)
@@ -50,7 +49,7 @@ describe "Place your specs here" do
   end
   
   it "should not be mandatory to call with integer" do
-    avg = Averager.new(:log_path => @log_path, :expected => 2, :every => 1)
+    avg = Averager.new(:log_path => @log_path, :expected => 2, :every => 1.0)
     TimeTravel.jump(1)
     avg.avg
     TimeTravel.jump(1)
@@ -77,6 +76,6 @@ describe "Place your specs here" do
       TimeTravel.jump(1)
       avg.avg
     end
-    File.read(@log_path).should == %(3/3 100.0% (1.0)\nfinished in 3.0\n)
+    File.read(@log_path).should == %(1/3 33.3% (1.0)\n3/3 100.0% (1.0)\nfinished in 3.0\n)
   end
 end

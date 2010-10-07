@@ -6,7 +6,7 @@ class Averager
   
   def initialize(options = {})
     @started = Time.now
-    @every = options[:every] || 1000
+    @every = options[:every] || 1.0
     if @expected = options[:expected]
       @digits = @expected.to_i.to_s.length
     end
@@ -36,7 +36,12 @@ class Averager
   end
   
   def print_current?
-    @i % @every == 0
+    if @last_printed.nil? || (Time.now - @last_printed) >= @every
+      @last_printed = Time.now
+      true
+    else
+      false
+    end
   end
   
   def print_current(status = nil)
@@ -78,14 +83,15 @@ class Averager
     end
     if print_current?
       print_current(status)
-      true
+      @printed_last = true
     else
-      false
+      @printed_last = false
     end
+    @printed_last
   end
   
   def finish
-    if !print_current?
+    if !@printed_last && !print_current?
       print_current
     end
     @stream.puts "\n" if @progress_bar
