@@ -78,4 +78,11 @@ describe "Place your specs here" do
     end
     File.read(@log_path).should == %(1/3 33.3% (1.0)\n3/3 100.0% (1.0)\nfinished in 3.0\n)
   end
+  
+  it "should be able to average over an array" do
+    [1, 2, 3, 4].each_with_avg(:log_path => @log_path) do |i|
+      TimeTravel.jump(1)
+    end
+    File.read(@log_path).should == %(1/4 25.0% (1.0)\n2/4 50.0% (1.0)\n3/4 75.0% (1.0)\n4/4 100.0% (1.0)\nfinished in 4.0\n)
+  end
 end

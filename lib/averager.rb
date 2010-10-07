@@ -4,6 +4,18 @@ $:.unshift(File.dirname(__FILE__)) unless
 class Averager
   VERSION = '0.0.4'
   
+  module ArrayExtensions
+    def each_with_avg(options = {})
+      options[:expected] ||= self.length
+      Averager.new(options) do |a|
+        self.each do |element|
+          yield(element)
+          a.avg
+        end
+      end
+    end
+  end
+  
   def initialize(options = {})
     @started = Time.now
     @every = options[:every] || 1.0
@@ -99,3 +111,5 @@ class Averager
     @stream.close if ![$stdout, $stderr].include?(@stream)
   end
 end
+
+Array.send(:include, Averager::ArrayExtensions)
