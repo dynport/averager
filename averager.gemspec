@@ -17,7 +17,11 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    ".bundle/config",
+    ".rspec",
     "Gemfile",
+    "Gemfile.lock",
+    "LICENSE",
     "README.rdoc",
     "Rakefile",
     "VERSION",
