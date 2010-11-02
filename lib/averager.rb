@@ -2,8 +2,6 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 class Averager
-  VERSION = '0.1.0'
-  
   module ArrayExtensions
     def each_with_avg(options = {})
       options[:expected] ||= self.length
@@ -64,10 +62,20 @@ class Averager
     else
       out = "%#{@digits}d" % @i
       if @expected
-        out << "/#{@expected}" 
+        out << "/#{@expected}"
         out << " %3.1f%" % (100 * (@i / @expected.to_f)) if @i <= @expected
       end
-      out << " (%.1f)" % per_second
+      out << " (%.1f/second" % [per_second]
+      if @expected && @i < @expected
+        missing = @expected - @i
+        seconds = missing / per_second
+        hours = (seconds / 3600.0).floor
+        seconds -= (hours * 3600)
+        minutes = (seconds / 60.0).floor
+        seconds -= (minutes * 60)
+        out << " %02d:%02d:%02d" % [hours, minutes, seconds]
+      end
+      out << ")"
       out << ": #{status}" if status
     end
     if @progress_bar

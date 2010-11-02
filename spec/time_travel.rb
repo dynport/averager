@@ -1,5 +1,6 @@
 module TimeTravel
   @@offset = 0
+  @@frozen_time = nil
   
   def self.now
     if @@frozen_time
