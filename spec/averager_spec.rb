@@ -67,6 +67,19 @@ describe "Place your specs here" do
     File.read(@log_path).should == %(1/2 50.0% (1.0/second 00:00:01)\n2/2 100.0% (1.0/second)\nfinished in 2.0\n)
   end
   
+  it "should not break on printing first and per_second is null" do
+    Averager.new(:log_path => @log_path, :expected => 2, :every => 1) do |a|
+      a.avg
+    end
+    File.read(@log_path).should == "1/2 50.0% (inf/second)\nfinished in 0.0\n"
+  end
+  
+  it "should not break when per_second is 0.0" do
+    Averager.new(:log_path => @log_path, :expected => 2, :every => 1) do |a|
+      a.avg(0.0)
+    end
+  end
+  
   it "should print the last status when finished before" do
     Averager.new(:log_path => @log_path, :expected => 3, :every => 4) do |avg|
       TimeTravel.jump(1)

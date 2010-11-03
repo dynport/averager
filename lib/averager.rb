@@ -55,6 +55,7 @@ class Averager
   end
   
   def print_current(status = nil)
+    return if @i == 0
     per_second = @i / (Time.now - @started)
     out = nil
     if block_given?
@@ -66,7 +67,7 @@ class Averager
         out << " %3.1f%" % (100 * (@i / @expected.to_f)) if @i <= @expected
       end
       out << " (%.1f/second" % [per_second]
-      if @expected && @i < @expected
+      if !per_second.infinite? && @expected && @i < @expected
         missing = @expected - @i
         seconds = missing / per_second
         hours = (seconds / 3600.0).floor
