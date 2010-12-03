@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobias Schwab"]
-  s.date = %q{2010-11-03}
+  s.date = %q{2010-12-03}
   s.description = %q{RubyGem to track long running processes.}
   s.email = %q{tobias.schwab@dynport.de}
   s.extra_rdoc_files = [
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    ".autotest",
     ".bundle/config",
     ".rspec",
     "Gemfile",
@@ -25,11 +26,11 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "autotest/discover.rb",
     "averager.gemspec",
     "lib/averager.rb",
     "spec/averager_spec.rb",
-    "spec/spec_helper.rb",
-    "spec/time_travel.rb"
+    "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/tobstarr/averager}
   s.require_paths = ["lib"]
@@ -37,8 +38,7 @@ Gem::Specification.new do |s|
   s.summary = %q{RubyGem to track long running processes.}
   s.test_files = [
     "spec/averager_spec.rb",
-    "spec/spec_helper.rb",
-    "spec/time_travel.rb"
+    "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -47,6 +47,9 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<ruby-debug>, [">= 0"])
+      s.add_development_dependency(%q<timecop>, [">= 0"])
+      s.add_development_dependency(%q<autotest>, [">= 0"])
+      s.add_development_dependency(%q<autotest-growl>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 2.0.0.beta.19"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.0.pre3"])
@@ -57,6 +60,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<ruby-debug>, [">= 0"])
+      s.add_dependency(%q<timecop>, [">= 0"])
+      s.add_dependency(%q<autotest>, [">= 0"])
+      s.add_dependency(%q<autotest-growl>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 2.0.0.beta.19"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.0.pre3"])
@@ -68,6 +74,9 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<ruby-debug>, [">= 0"])
+    s.add_dependency(%q<timecop>, [">= 0"])
+    s.add_dependency(%q<autotest>, [">= 0"])
+    s.add_dependency(%q<autotest-growl>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 2.0.0.beta.19"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.0.pre3"])

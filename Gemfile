@@ -1,11 +1,12 @@
 source "http://rubygems.org"
 
-group :development do
+group :development, :test do
   if RUBY_VERSION.match(/^1\.8/)
     gem 'ruby-debug'
   elsif RUBY_VERSION.match(/^1\.9/)
     gem 'ruby-debug19'
   end
+  gem 'timecop'
   gem 'autotest'
   gem 'autotest-growl'
   gem "rspec", ">= 2.0.0.beta.19"
