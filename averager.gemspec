@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{averager}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobias Schwab"]
-  s.date = %q{2010-12-03}
+  s.date = %q{2010-12-15}
   s.description = %q{RubyGem to track long running processes.}
   s.email = %q{tobias.schwab@dynport.de}
   s.extra_rdoc_files = [
