@@ -22,6 +22,10 @@ end
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
+def project_root
+  Pathname.new(File.expand_path("..", File.basename(__FILE__)))
+end
+
 RSpec.configure do |config|
   
 end
